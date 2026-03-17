@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HandwritingAI — Personality Prediction</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="images/handlogo.png" alt="HandwritingAI" class="nav-logo me-2">
+      <span class="fw-bold brand-text">HandwritingAI</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="upload.html">Upload</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="pt-5">
+  <div class="container hero-wrap">
+    <div class="row align-items-center">
+      <div class="col-lg-6 pe-lg-5">
+        <h1 class="display-5 fw-bold lh-sm">
+          Personality Prediction from <span class="accent-word">Handwriting</span>
+        </h1>
+        <p class="lead text-muted mb-4">
+          AI-powered handwriting analysis using slant, spacing, pressure & baseline patterns.
+        </p>
+        <a href="upload.html" class="btn btn-gradient btn-lg">Start Prediction</a>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <div class="hero-card rounded-4 shadow-soft">
+          <img src="images/handwriting.jpg" alt="handwriting sample" class="img-fluid rounded-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT US SECTION -->
+<section class="py-5" id="aboutus">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">
+      About <span class="accent-word">Us</span>
+    </h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="about-card p-5 rounded-4">
+          <h4 class="fw-semibold mb-3">Who We Are</h4>
+          <p class="text-muted">
+            HandwritingAI is a machine learning-powered system that analyzes handwriting samples
+            to identify personality traits using scientifically studied characteristics such as slant,
+            spacing, baseline alignment, writing pressure, and letter formation patterns.
+            <br><br>
+            Our goal is to create an automated and unbiased solution using CNN (MobileNetV2)
+            to provide fast, accurate, and interpretable personality predictions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⭐ ADDING TRAIT BUTTONS HERE ⭐ -->
+    <div class="row text-center mt-5">
+      <h4 class="fw-bold mb-3">Personality Traits We Analyze</h4>
+
+      <div class="col-md-12 d-flex justify-content-center flex-wrap gap-3">
+        <button class="trait-btn" data-bs-toggle="modal" data-bs-target="#opennessModal">Openness</button>
+        <button class="trait-btn" data-bs-toggle="modal" data-bs-target="#conscientiousModal">Conscientiousness</button>
+        <button class="trait-btn" data-bs-toggle="modal" data-bs-target="#extraversionModal">Extraversion</button>
+        <button class="trait-btn" data-bs-toggle="modal" data-bs-target="#agreeablenessModal">Agreeableness</button>
+        <button class="trait-btn" data-bs-toggle="modal" data-bs-target="#neuroticismModal">Neuroticism</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROPOSED SOLUTION -->
+<section class="py-5 section-gray">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Our <span class="accent-word">Proposed Solution</span></h2>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- CARD 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card custom-card text-center">
+          <div class="badge-num">1</div>
+          <h5 class="fw-semibold mt-3">Preprocessing</h5>
+          <p class="text-muted small">Grayscale, noise removal, resizing.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card custom-card text-center">
+          <div class="badge-num">2</div>
+          <h5 class="fw-semibold mt-3">Feature Extraction</h5>
+          <p class="text-muted small">Slant, spacing, pressure, baseline.</p>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card custom-card text-center">
+          <div class="badge-num">3</div>
+          <h5 class="fw-semibold mt-3">CNN Model</h5>
+          <p class="text-muted small">MobileNetV2 learns handwriting patterns.</p>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card custom-card text-center">
+          <div class="badge-num">4</div>
+          <h5 class="fw-semibold mt-3">Prediction Output</h5>
+          <p class="text-muted small">Predicts Big Five personality traits.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ TRAIT MODALS (POPUP WINDOWS) ⭐ -->
+<!-- Openness -->
+<div class="modal fade" id="opennessModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content trait-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">Openness</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Openness represents creativity, curiosity, imagination, and willingness to explore new ideas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Conscientiousness -->
+<div class="modal fade" id="conscientiousModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content trait-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">Conscientiousness</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Conscientious people are organized, disciplined, responsible, and goal-oriented.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Extraversion -->
+<div class="modal fade" id="extraversionModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content trait-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">Extraversion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Extraversion includes sociability, talkativeness, energy levels, and positive emotions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Agreeableness -->
+<div class="modal fade" id="agreeablenessModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content trait-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">Agreeableness</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Agreeable people are kind, cooperative, empathetic, and polite.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Neuroticism -->
+<div class="modal fade" id="neuroticismModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content trait-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">Neuroticism</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Neuroticism reflects mood swings, anxiety, emotional sensitivity, and stress reactivity.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer py-3">
+  <div class="container text-center">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      © 2025 HandwritingAI | Developed by Kavya Hegde
+    </marquee>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+:root{
+  --accent:#c53888;
+  --accent-dark:#ff00ea;
+  --soft:#F7F7F8;
+  --muted:#6b6b6b;
+  --radius:18px;
+}
+
+/* Global */
+*{box-sizing:border-box}
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:#fff;
+  color:#222;
+  padding-top:76px; /* navbar */
+}
+
+/* Navbar & brand */
+.nav-logo{ width:44px; height:44px; border-radius:10px; object-fit:cover; }
+.brand-text{ font-size:18px; color:#111; }
+.navbar .nav-link{ color:var(--muted); }
+.navbar .nav-link.active{ color:var(--accent); font-weight:600; }
+
+/* Hero */
+.hero-wrap{ padding:48px 0 30px; }
+.accent-word{ color:var(--accent); }
+
+/* Buttons - orange gradient */
+.btn-gradient{
+  background: linear-gradient(90deg,var(--accent) 0%, var(--accent-dark) 100%);
+  color:#fff;
+  border:0;
+  border-radius:12px;
+  padding:10px 24px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-gradient:hover{ transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,122,0,0.16); }
+
+/* Hero image container */
+.hero-card{ background:var(--soft); padding:18px; border-radius:18px; }
+
+/* Section gray */
+.section-gray{ background:#fafafa; padding:56px 0; }
+
+/* Info cards (rounded, flat minimal look with subtle floating badge shadow) */
+.info-card{
+  background:#fff;
+  border-radius:18px;
+  border:1px solid #f0f0f0;
+  position:relative;
+  padding-top:28px;
+}
+.info-card .badge-num{
+  width:56px; height:56px; border-radius:50%;
+  background: radial-gradient(circle at 30% 25%, #e6e5e4, var(--accent));
+  color:#fff; font-weight:700; display:inline-flex; align-items:center; justify-content:center;
+  position:absolute; top:-28px; left:calc(50% - 28px);
+  box-shadow: 0 12px 30px rgba(255,122,0,0.12);
+  font-size:18px;
+}
+
+.icon-circle svg{ stroke:var(--accent); stroke-width:1.5; }
+.about-card{
+    background:#fff;
+    border-radius:18px;
+    border:1px solid #b86bab;
+    padding:24px;
+    transition: transform .18s ease;
+}
+.about-card:hover{
+    transform: translateY(-6px);
+    background-colo: #c17fac;
+
+}
+
+/* Upload page styles */
+.upload-hero{ padding:48px 0 80px; }
+.step-card{
+  background:#fff;
+  border-radius:14px;
+  border:1px solid #f0f0f0;
+  display:flex; align-items:flex-start;
+  gap:12px;
+  transition: transform .18s ease;
+}
+.step-card:hover{ transform: translateY(-6px); }
+.step-badge{
+  width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(180deg,#ffd6b3,var(--accent));
+  color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;
+  box-shadow: 0 8px 22px rgba(255,122,0,0.12);
+}
+.custom-card {
+  padding: 35px 20px;
+  border-radius: 20px;
+  min-height: 260px; /* Increased height */
+  background: linear-gradient(135deg, #fff0f7, #ffc2f5);
+  box-shadow: 0 6px 20px rgba(141, 38, 115, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid #ffddbd;
+}
+
+.custom-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(127, 45, 108, 0.35);
+  background: linear-gradient(135deg, #efe4e8, #c652b9);
+}
+
+.badge-num {
+  width: 55px;
+  height: 55px;
+  background: #ff7a00;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 10px rgba(255, 121, 0, 0.3);
+}
+#traitDetailBox {
+  border-left: 5px solid #6c63ff;
+  background-color: #f5f6ff;
+  font-size: 15px;
+}
+/* ==========================
+   Pink Theme for Trait Modal
+========================== */
+
+/* Modal header */
+#traitModal .modal-header {
+    background-color: #ff4f9a;
+    color: #fff;
+    border-bottom: none;
+}
+
+/* Modal title */
+#traitModalTitle {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Close button white */
+#traitModal .btn-close {
+    filter: invert(1);
+}
+
+/* Modal body */
+#traitModal .modal-body {
+    background-color: #fff0f6;
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Highlight score */
+#traitModalScore {
+    color: #ff4f9a;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Modal footer */
+#traitModal .modal-footer {
+    background-color: #fff0f6;
+    border-top: none;
+}
+
+/* Close button */
+#traitModal .modal-footer .btn-secondary {
+    background-color: #ff4f9a;
+    border: none;
+}
+
+#traitModal .modal-footer .btn-secondary:hover {
+    background-color: #e63e86;
+}
+/* ==========================
+   Modal Smooth Animation
+========================== */
+
+/* Initial hidden state */
+#traitModal .modal-dialog {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+    transition: all 0.35s ease-out;
+}
+
+/* When modal is shown */
+#traitModal.show .modal-dialog {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Backdrop fade */
+.modal-backdrop.show {
+    opacity: 0.6;
+    transition: opacity 0.35s ease;
+}
+
+
+/* Upload box (dashed, rounded) */
+.upload-box{
+  border:2px dashed rgba(219, 78, 212, 0.28);
+  background: linear-gradient(180deg, rgba(244, 234, 250, 0.8), #d4c3cf);
+  padding:42px; cursor:pointer;
+  transition: box-shadow .18s ease, border-color .18s ease, transform .12s ease;
+  border-radius:18px;
+}
+.upload-box:hover{ border-color:var(--accent); transform: translateY(-6px); box-shadow:0 24px 60px rgba(230, 136, 208, 0.08); }
+.upload-icon{ font-size:38px; color:var(--accent); }
+
+/* Preview image */
+.preview-img{ max-width:320px; margin:auto; display:block; }
+
+/* Footer */
+.footer{ background:#434242; border-top:1px solid #f0f0f0; color:#777; }
+
+/* Professional fade-slide (stagger via CSS variable) */
+.fade-slide{
+  opacity:0; transform:translateY(10px);
+  animation:fadeUp .7s ease forwards;
+}
+.img-fluid
+{
+    height:auto;
+    width:1000px;
+}
+@keyframes fadeUp{ to{opacity:1; transform:none;} }
+
+/* Responsive tweaks */
+@media (max-width:991px){
+  .hero-card{ margin-top:22px; }
+  .info-card .badge-num{ left:24px; top:-28px; }
+}
+/* Personality Trait Buttons */
+.trait-btn {
+  background: linear-gradient(120deg, #7f64b6, #dc3faf);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  letter-spacing: .5px;
+}
+
+.trait-btn:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(120deg, #d74ab3, #ff7ac6);
+  box-shadow: 0 8px 22px rgba(220, 204, 216, 0.35);
+}
+
+/* Modal Styling */
+.trait-modal {
+  border-radius: 18px;
+  background: linear-gradient(150deg, hsl(326, 16%, 91%), #e4e0e3);
+  border: 1px solid #ff99dd;
+  box-shadow: 0 8px 25px rgba(255, 0, 234, 0.2);
+}
+
+.trait-modal .modal-header {
+  border-bottom: none;
+}
+
+.trait-modal .modal-title {
+  color: #c03888;
+  font-weight: 700;
+}
+/* ==========================
+   Animated Error Popup
+   ========================== */
+#error-popup {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4d4d;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+#error-popup.show {
+    top: 20px;
+}
+
+#error-popup.shake {
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(-50%) translateX(0); }
+    25% { transform: translateX(-50%) translateX(-5px); }
+    50% { transform: translateX(-50%) translateX(5px); }
+    75% { transform: translateX(-50%) translateX(-5px); }
+    100% { transform: translateX(-50%) translateX(0); }
+}
+
+
+

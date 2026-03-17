@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HandwritingAI — Upload</title>
+
+  <!-- Chart.js (MISSING BEFORE – FIXED) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body>  
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="images/handlogo.png" class="nav-logo me-2">
+      <span class="fw-bold brand-text">HandwritingAI</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu2">
+      <ul class="navbar-nav ms-auto">
+        <!-- <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li> -->
+        <!-- <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li> -->
+        <li class="nav-item"><a class="nav-link active" href="upload.html">Upload</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5 pt-4">
+  <div id="errorBox" class="alert alert-danger d-none" role="alert"></div>
+</div>
+<main class="pt-5">
+<section class="container upload-hero text-center">
+
+<h1 class="fw-bold display-6">Upload Your <span class="accent-word">Handwriting Sample</span></h1>
+<p class="text-muted mb-4">Follow the steps below to analyze your handwriting.</p>
+ <!-- Steps -->
+    <div class="row justify-content-center g-3 mb-4">
+      <div class="col-md-4">
+        <div class="step-card p-4 rounded-4 d-flex align-items-start gap-3">
+          <div class="step-badge">1</div>
+          <div>
+            <h6 class="mb-1 fw-semibold">Upload</h6>
+            <p class="text-muted small mb-0">Choose or drop your handwriting image</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="step-card p-4 rounded-4 d-flex align-items-start gap-3">
+          <div class="step-badge">2</div>
+          <div>
+            <h6 class="mb-1 fw-semibold">Preview</h6>
+            <p class="text-muted small mb-0">Verify the image</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="step-card p-4 rounded-4 d-flex align-items-start gap-3">
+          <div class="step-badge">3</div>
+          <div>
+            <h6 class="mb-1 fw-semibold">Analyze</h6>
+            <p class="text-muted small mb-0">Click analyze to see personality traits</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RESULT MODAL -->
+<div class="modal fade" id="traitModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="traitModalTitle"></h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-1">
+          <strong>Score:</strong>
+          <span id="traitModalScore" class="text-primary fw-semibold"></span>%
+        </p>
+
+        <p><h3 id="traitModalSummary" class="text-muted mb-3"></h3></p>
+
+        <!-- <canvas id="traitChart" height="220"></canvas> -->
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+  
+<!-- TRAIT DETAIL MODAL -->
+<div class="modal fade" id="traitModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title fw-bold" id="traitModalTitle"></h4>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <p class="fs-4 fw-semibold text-primary">
+          <span id="traitModalScore"></span>%
+        </p>
+
+        <h2 id="traitModalSummary"></h2>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ERROR BOX -->
+<div id="errorBox" class="alert alert-danger d-none"></div>
+
+<!-- UPLOAD BOX -->
+<label class="upload-box d-block rounded-4 mx-auto p-5 text-center" for="fileInput">
+  <input id="fileInput" type="file" accept="image/*" hidden>
+  <div class="upload-inner">
+    <div class="upload-icon mb-3">⬆️</div>
+    <h5 class="fw-semibold">Click to Upload Handwriting Image</h5>
+    <p class="text-muted small">JPG — Try a clear handwriting sample.</p>
+  </div>
+</label>
+
+<img id="preview" class="preview-img rounded-3 d-none">
+
+
+<button id="analyzeBtn" class="btn btn-gradient btn-lg d-none mt-4">Analyze Personality</button>
+<!-- FINAL RESULT SECTION (AFTER MODAL CLOSE) -->
+<div id="finalResult" class="container mt-5 d-none">
+  <div class="card shadow p-4">
+
+    <h3 class="fw-bold mb-2">
+      Predicted Trait:
+      <span id="finalTrait" class="text-primary"></span>
+    </h3>
+
+    <p>
+      <strong>Score:</strong>
+      <span id="finalScore"></span>%
+    </p>
+
+    <p><h2 id="finalSummary" class="text-muted"></h2></p>
+
+    <canvas id="finalChart" height="220"></canvas>
+
+    <button id="downloadPdfBtn"
+            class="btn btn-success mt-4">
+      ⬇️ Download Report (PDF)
+    </button>
+
+  </div>
+</div>
+
+<!-- RESULT BOX -->
+<!-- <div id="resultContainer" class="mt-4 d-none"></div> -->
+
+</section>
+</main>
+
+<footer class="footer py-3">
+  <div class="container text-center">
+    <marquee>© 2025 HandwritingAI | Developed by kavyahegde</marquee>
+  </div>
+</footer>
+
+<script>
+const { jsPDF } = window.jspdf;
+
+const TRAIT_SUMMARY_MAP = {
+  "Agreeableness": "Cooperative, kind, empathetic nature.",
+  "Conscientiousness": "Organized, responsible, disciplined.",
+  "Extraversion": "Energetic, talkative, socially expressive.",
+  "Neuroticism": "Emotionally sensitive, easily stressed.",
+  "Openness": "Creative, imaginative, open to new ideas."
+};
+
+const fileInput = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+const analyzeBtn = document.getElementById("analyzeBtn");
+const errorBox = document.getElementById("errorBox");
+
+const finalResult = document.getElementById("finalResult");
+const finalTrait = document.getElementById("finalTrait");
+const finalScore = document.getElementById("finalScore");
+const finalSummary = document.getElementById("finalSummary");
+const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+
+let selectedFile = null;
+let modalChart = null;
+let finalChart = null;
+let lastData = null;
+
+fileInput.addEventListener("change", () => {
+  selectedFile = fileInput.files[0];
+  preview.src = URL.createObjectURL(selectedFile);
+  preview.classList.remove("d-none");
+  analyzeBtn.classList.remove("d-none");
+  errorBox.classList.add("d-none");
+});
+
+analyzeBtn.addEventListener("click", async () => {
+  analyzeBtn.disabled = true;
+  analyzeBtn.innerText = "Analyzing...";
+
+  const formData = new FormData();
+  formData.append("file", selectedFile);
+
+  const res = await fetch("http://127.0.0.1:5000/predict", {
+    method: "POST",
+    body: formData
+  });
+
+  const data = await res.json();
+  analyzeBtn.disabled = false;
+  analyzeBtn.innerText = "Analyze Personality";
+
+  if (!res.ok || data.error) {
+    errorBox.textContent = data.error;
+    errorBox.classList.remove("d-none");
+    return;
+  }
+
+  lastData = data;
+
+  // MODAL CONTENT
+  document.getElementById("traitModalTitle").innerText = data.trait;
+  document.getElementById("traitModalScore").innerText =
+    data.scores[data.trait];
+  document.getElementById("traitModalSummary").innerText =
+    TRAIT_SUMMARY_MAP[data.trait];
+
+  const modal = new bootstrap.Modal(
+    document.getElementById("traitModal")
+  );
+  modal.show();
+
+  // MODAL CHART
+  const ctx = document.getElementById("traitChart").getContext("2d");
+  if (modalChart) modalChart.destroy();
+
+  modalChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: Object.keys(data.scores),
+      datasets: [{
+        data: Object.values(data.scores),
+        label: "Scores (%)",
+        backgroundColor: "#6c63ff"
+      }]
+    },
+    options: { scales: { y: { beginAtZero: true, max: 100 } } }
+  });
+});
+
+// AFTER MODAL CLOSE → SHOW NORMAL RESULT
+document.getElementById("traitModal").addEventListener("hidden.bs.modal", () => {
+  if (!lastData) return;
+
+  finalResult.classList.remove("d-none");
+
+  finalTrait.innerText = lastData.trait;
+  finalScore.innerText = lastData.scores[lastData.trait];
+  finalSummary.innerText = TRAIT_SUMMARY_MAP[lastData.trait];
+
+  const ctx = document.getElementById("finalChart").getContext("2d");
+  if (finalChart) finalChart.destroy();
+
+  finalChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: Object.keys(lastData.scores),
+      datasets: [{
+        data: Object.values(lastData.scores),
+        label: "Scores (%)",
+        backgroundColor: "#0d6efd"
+      }]
+    },
+    options: { scales: { y: { beginAtZero: true, max: 100 } } ,
+    onClick: (event, elements) => {
+      if (!elements.length) return;
+
+      const index = elements[0].index;
+      const clickedTrait = finalChart.data.labels[index];
+      const clickedScore = lastData.scores[clickedTrait];
+
+      showTraitModal(clickedTrait, clickedScore);
+    }
+  }
+  });
+});
+const traitModalInstance = new bootstrap.Modal(
+  document.getElementById("traitModal")
+);
+
+function showTraitModal(trait, score) {
+  document.getElementById("traitModalTitle").innerText = trait;
+  document.getElementById("traitModalScore").innerText = score;
+  document.getElementById("traitModalSummary").innerText =
+    TRAIT_SUMMARY_MAP[trait];
+
+  traitModalInstance.show();
+}
+
+
+// DOWNLOAD PDF
+downloadPdfBtn.addEventListener("click", () => {
+  const pdf = new jsPDF();
+
+  pdf.setFontSize(16);
+  pdf.text("Handwriting Personality Analysis", 20, 20);
+
+  pdf.setFontSize(12);
+  pdf.text(`Trait: ${lastData.trait}`, 20, 35);
+  pdf.text(`Score: ${lastData.scores[lastData.trait]}%`, 20, 45);
+  pdf.text(lastData.summary, 20, 60);
+
+  const chartCanvas = document.getElementById("finalChart");
+  const chartImg = chartCanvas.toDataURL("image/png");
+
+  pdf.addImage(chartImg, "PNG", 20, 75, 170, 90);
+
+  pdf.save("Handwriting_Personality_Report.pdf");
+});
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
