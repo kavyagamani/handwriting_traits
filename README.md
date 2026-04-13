@@ -111,6 +111,9 @@ Handwriting-AI/
 │── app.py
 │── requirements.txt
 │── README.md
+
+
+
 ⚙️ Installation & Running the Project
 🔹 Step 1: Clone Repository
 git clone https://github.com/your-username/handwriting-ai.git
@@ -118,8 +121,6 @@ cd handwriting-ai
 🔹 Step 2: Create Virtual Environment
 python -m venv venv
 👉 Activate Environment
-
-
 Windows:
 venv\Scripts\activate
 Linux / Mac:
@@ -171,10 +172,10 @@ Similar traits may overlap
 🧠 Advanced deep learning models
 
 📸 Screenshots
-<img width="1000" height="500" alt="Screenshot (530)" src="https://github.com/user-attachments/assets/661c22a4-7c2e-4245-984d-6587bc74c3e7" />
-<img width="1000" height="500" alt="Screenshot (531)" src="https://github.com/user-attachments/assets/f7d311be-caf8-4434-ad81-aa18f9ddf6f5" />
-<img width="1000" height="500" alt="Screenshot (533)" src="https://github.com/user-attachments/assets/1ed6215d-1d23-485a-8530-2db642767b4e" />
-<img width="1000" height="500" alt="Screenshot (534)" src="https://github.com/user-attachments/assets/dfd520e6-d638-40c7-b9a3-3781f0fbafdd" />
+<img width="600" height="300" alt="Screenshot (530)" src="https://github.com/user-attachments/assets/661c22a4-7c2e-4245-984d-6587bc74c3e7" />
+<img width="600" height="300" alt="Screenshot (531)" src="https://github.com/user-attachments/assets/f7d311be-caf8-4434-ad81-aa18f9ddf6f5" />
+<img width="600" height="300" alt="Screenshot (533)" src="https://github.com/user-attachments/assets/1ed6215d-1d23-485a-8530-2db642767b4e" />
+<img width="600" height="300" alt="Screenshot (534)" src="https://github.com/user-attachments/assets/dfd520e6-d638-40c7-b9a3-3781f0fbafdd" />
 
 
 👩‍💻 Author
